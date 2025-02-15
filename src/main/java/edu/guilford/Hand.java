@@ -3,10 +3,11 @@ package edu.guilford;
 import java.util.ArrayList;
 
 public class Hand {
+    // instance variable
     private ArrayList<Card> hand;
 
     
-
+    // constructor
     public Hand() {
         hand = new ArrayList<Card>();
     }
@@ -32,9 +33,19 @@ public class Hand {
     }
 
     // Calculate the value of the hand
+    /**
+     * calculates the total value of the hand.
+     * Number cards (2-10) are worth their face value.
+     * Face cards (Jack, Queen, King) are worth 10 points each.
+     * Aces can be worth either 1 or 11 points, depending on which value keeps the total hand value
+     * closest to 21 without exceeding it.
+     *
+     * @return the total value of the hand
+     */
     public int getTotalValue() {
         int value = 0;
         int aces = 0;
+
         for (Card card : hand) {
             switch (card.getRank()) {
                 case TWO:
@@ -82,7 +93,7 @@ public class Hand {
         return value;
     }
 
-    // Override toString method
+    // toString method
     public String toString() {
         String handString = "";
         for (Card card : hand) {

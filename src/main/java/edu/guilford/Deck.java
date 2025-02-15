@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Deck {
-    private ArrayList<Card> deck = new ArrayList<Card>();
+    // instance variables
     private Random rand = new Random();
+    private ArrayList<Card> deck = new ArrayList<Card>();
 
+    // constructor
     public Deck() {
         build();
     }
 
+    // getters
     public ArrayList<Card> getDeck() {
         return deck;
     }
@@ -19,6 +22,11 @@ public class Deck {
         deck.clear();
     }
 
+    /**
+     * builds a deck of 52 cards
+     * 13 cards of each suit (hearts, diamonds, clubs, spades)
+     * 4 suits (hearts, diamonds, clubs, spades)
+     */
     public void build() {
         for (Card.Suit suit : Card.Suit.values()) {
             for (Card.Rank rank : Card.Rank.values()) {
@@ -27,21 +35,32 @@ public class Deck {
         }
     }
 
+    /**
+     * shuffles the deck
+     * creates a new deck and randomly selects cards from the original deck to populate the new deck
+     */
     public void shuffle() {
+        // clone the deck
         ArrayList<Card> tempDeck = new ArrayList<Card>();
         while (deck.size() > 0) {
+            // pick a random card from the deck
             int loc = rand.nextInt(deck.size());
             tempDeck.add(deck.get(loc));
+            // remove the card from the deck to avoid duplicates
             deck.remove(loc);
         }
         deck = tempDeck;
     }
 
+    // deals a card from specified position in the deck
+    // does not replace the card
     public Card pick(int i) {
         Card picked = deck.remove(i);
         return picked;
     }
 
+    // deals a card from the top of the deck
+    // does not replace the card
     public Card deal() {
         return deck.remove(0);
     }
@@ -50,6 +69,7 @@ public class Deck {
         return deck.size();
     }
 
+    // returns a string representation of the deck
     public String toString() {
         String deckString = "";
         for (Card card : deck) {

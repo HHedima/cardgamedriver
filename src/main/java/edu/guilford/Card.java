@@ -24,6 +24,10 @@ public class Card implements Comparable<Card>{
         this.rank = rank;
     }
 
+    /**
+     * default constructor
+     * creates a random card
+     */
     public Card() {
         // random Card
         Random rand = new Random();
@@ -42,21 +46,26 @@ public class Card implements Comparable<Card>{
         return rank;
     }
 
-    // toString
-
+    // toString method
     public String toString() {
         return rank + " of " + suit;
     }
 
+    /**
+     * compares two cards
+     * first compares the ranks
+     * if the ranks are the same, compares the suits
+     */
     @Override
     public int compareTo(Card otherCard) {
-        // TODO Auto-generated method stub
+        // compare the ranks first
         if (this.rank.ordinal() > otherCard.rank.ordinal()) {
             return 1;
         }
         else if (this.rank.ordinal() < otherCard.rank.ordinal()) {
             return -1;
         }
+        // if the ranks are the same, compare the suits
         else {
             if (this.suit.ordinal() > otherCard.suit.ordinal()) {
                 return 1;
@@ -65,7 +74,7 @@ public class Card implements Comparable<Card>{
                 return -1;
             }
         }
-
+        // if the cards are the same, return 0
         return 0;
     }
 
